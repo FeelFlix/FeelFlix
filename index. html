@@ -1,233 +1,127 @@
-<!DOCTYPE html>
-<html lang="tr">
+<!DOCTYPE html><html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FeelFlix - Film ve Dizi Öneri Sistemi</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FeelFlix</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #fefefe;
-      color: #2e2e2e;
-      padding: 20px;
+      background-color: #fdfdff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
     }
-    h1 {
-      color: #7e66ff; /* soft mor */
+    header {
+      background: linear-gradient(to right, #d6c8ff, #d7ffe1, #ffd6d6);
+      padding: 2rem;
       text-align: center;
     }
-    label, select, button {
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #4b0082;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .filters label {
       display: block;
-      margin: 10px auto;
-      font-size: 18px;
-      max-width: 400px;
-      width: 90%;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    select, button {
+      padding: 0.5rem;
+      width: 100%;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
     }
     button {
-      background-color: #a0dca0; /* soft yeşil */
-      border: none;
-      border-radius: 8px;
-      padding: 12px 0;
+      background-color: #b19cd9;
+      color: white;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      margin-top: 2rem;
     }
-    button:hover {
-      background-color: #c4e4c4;
-    }
-    .film {
-      background: #ffd6d6; /* soft kırmızı */
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 600px;
-      margin: 30px auto 0 auto;
-      box-shadow: 0 4px 15px rgba(126, 102, 255, 0.3);
-      color: #2e2e2e;
-    }
-    .film-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: #7e66ff;
-    }
-    .film-details {
-      margin-top: 10px;
-      font-size: 16px;
+    .result {
+      margin-top: 2rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      background-color: #fff;
     }
   </style>
 </head>
 <body>
-  <h1>FeelFlix - Film ve Dizi Öneri Sistemi</h1>
-
-  <label for="mood">Ruh Halin:</label>
-  <select id="mood">
-    <option>Mutlu</option>
-    <option>Hüzünlü</option>
-    <option>Kızgın</option>
-    <option>Endişeli</option>
-    <option>Huzurlu</option>
-    <option>Yorgun</option>
-    <option>Heyecanlı</option>
-    <option>Korkmuş</option>
-    <option>Sakin</option>
-    <option>Motivasyonlu</option>
-    <option>Yalnız</option>
-    <option>Umutsuz</option>
-    <option>Şaşkın</option>
-    <option>Rahatsız</option>
-    <option>Kıskanç</option>
-    <option>Gururlu</option>
-    <option>Kaygılı</option>
-    <option>Enerjik</option>
-    <option>Melankolik</option>
-  </select>
-
-  <label for="country">Ülke:</label>
+  <header>
+    <h1>FeelFlix 🎬</h1>
+    <p>Ruh haline göre film öner!</p>
+  </header>  <div class="container">
+    <div class="filters">
+      <label for="mood">Ruh halin nedir?</label>
+      <select id="mood">
+        <option>Mutlu</option>
+        <option>Hüzünlü</option>
+        <option>Kızgın</option>
+        <option>Endişeli</option>
+        <option>Huzurlu</option>
+        <option>Yorgun</option>
+        <option>Heyecanlı</option>
+        <option>Korkmuş</option>
+        <option>Sakin</option>
+        <option>Motivasyonlu</option>
+        <option>Yalnız</option>
+        <option>Umutsuz</option>
+        <option>Şaşkın</option>
+        <option>Rahatsız</option>
+        <option>Kıskanç</option>
+        <option>Gururlu</option>
+        <option>Kaygılı</option>
+        <option>Enerjik</option>
+        <option>Melankolik</option>
+      </select><label for="country">Ülke seç:</label>
   <select id="country">
-    <option>Bütün Ülkeler</option>
     <option>Türkiye</option>
     <option>ABD</option>
-    <option>Kore</option>
-    <option>Japonya</option>
-    <option>Fransa</option>
-    <option>Hindistan</option>
+    <option>Güney Kore</option>
     <option>İngiltere</option>
+    <option>Fransa</option>
+    <option>Japonya</option>
     <option>Almanya</option>
-    <option>İtalya</option>
     <option>İspanya</option>
-    <option>Çin</option>
-    <option>Rusya</option>
-    <option>İsveç</option>
-    <option>Norveç</option>
-    <option>Kanada</option>
-    <option>Avustralya</option>
-    <option>Meksika</option>
-    <option>Brezilya</option>
   </select>
 
-  <label for="genre">Tür:</label>
+  <label for="genre">Film türü seç:</label>
   <select id="genre">
     <option>Aksiyon</option>
-    <option>Macera</option>
-    <option>Komedi</option>
     <option>Romantik</option>
-    <option>Korku</option>
-    <option>Gerilim</option>
-    <option>Gizem</option>
+    <option>Komedi</option>
     <option>Bilim Kurgu</option>
     <option>Fantastik</option>
-    <option>Animasyon</option>
-    <option>Belgesel</option>
-    <option>Suç</option>
-    <option>Biyografi</option>
-    <option>Tarihi</option>
-    <option>Savaş</option>
-    <option>Müzikal</option>
-    <option>Western</option>
-    <option>Spor</option>
-    <option>Aile</option>
-    <option>Çocuk</option>
-    <option>Gençlik</option>
-    <option>Kıyamet</option>
+    <option>Gerilim</option>
+    <option>Korku</option>
+    <option>Dram</option>
   </select>
 
-  <label for="subgenre">Alt Tür:</label>
-  <select id="subgenre">
-    <option>Romantik Komedi</option>
-    <option>Romantik Dram</option>
-    <option>Psikolojik Gerilim</option>
-    <option>Karamsar Mizah</option>
-    <option>Zombi</option>
-    <option>Vampir</option>
-    <option>Uzay / Evren</option>
-    <option>Casusluk</option>
-    <option>Hukuk</option>
-    <option>Polisiye</option>
-    <option>Doğaüstü</option>
-    <option>Mitoloji</option>
-    <option>Efsane</option>
-    <option>Yol</option>
-    <option>Sanat</option>
-    <option>Deneysel</option>
-  </select>
+  <button onclick="showSuggestion()">Film Öner!</button>
+</div>
 
-  <label for="language">Dil / Altyazı / Dublaj:</label>
-  <select id="language">
-    <option>Türkçe Dublaj</option>
-    <option>Türkçe Altyazı</option>
-    <option>Düz Film (Orijinal Dil)</option>
-  </select>
+<div class="result" id="result">
+  Film önerin burada görünecek.
+</div>
 
-  <button onclick="suggestFilm()">Öneri Al</button>
+  </div>  <script>
+    function showSuggestion() {
+      const mood = document.getElementById('mood').value;
+      const country = document.getElementById('country').value;
+      const genre = document.getElementById('genre').value;
 
-  <div id="result" class="film"></div>
-
-  <script>
-    const films = [
-      {
-        title: "Inception",
-        mood: "Motivasyonlu",
-        country: "ABD",
-        genre: "Bilim Kurgu",
-        subgenre: "Uzay / Evren",
-        language: "Türkçe Altyazı",
-        imdb: 8.8
-      },
-      {
-        title: "Ayla",
-        mood: "Hüzünlü",
-        country: "Türkiye",
-        genre: "Dram",
-        subgenre: "Biyografi",
-        language: "Türkçe Dublaj",
-        imdb: 8.4
-      },
-      {
-        title: "Train to Busan",
-        mood: "Korkmuş",
-        country: "Kore",
-        genre: "Korku",
-        subgenre: "Zombi",
-        language: "Türkçe Altyazı",
-        imdb: 7.6
-      },
-      {
-        title: "The Intouchables",
-        mood: "Huzurlu",
-        country: "Fransa",
-        genre: "Komedi",
-        subgenre: "Romantik Dram",
-        language: "Türkçe Dublaj",
-        imdb: 8.5
-      }
-    ];
-
-    function suggestFilm() {
-      const mood = document.getElementById("mood").value;
-      const country = document.getElementById("country").value;
-      const genre = document.getElementById("genre").value;
-      const subgenre = document.getElementById("subgenre").value;
-      const language = document.getElementById("language").value;
-
-      const filtered = films.filter(film =>
-        (country === "Bütün Ülkeler" || film.country === country) &&
-        film.mood === mood &&
-        film.genre === genre &&
-        film.subgenre === subgenre &&
-        film.language === language
-      );
-
-      const result = document.getElementById("result");
-      if (filtered.length > 0) {
-        const film = filtered[Math.floor(Math.random() * filtered.length)];
-        result.innerHTML = `
-          <div class="film-title">🎬 ${film.title}</div>
-          <div class="film-details">Tür: ${film.genre} (${film.subgenre})</div>
-          <div class="film-details">Ülke: ${film.country} | Ruh hali: ${film.mood}</div>
-          <div class="film-details">Dil: ${film.language} | IMDb: ⭐ ${film.imdb}</div>
-        `;
-      } else {
-        result.innerHTML = `<div class='film-details'>Uygun bir film bulunamadı, lütfen başka kombinasyon deneyin.</div>`;
-      }
+      // Şimdilik örnek bir öneri yapıyoruz
+      const result = document.getElementById('result');
+      result.innerHTML = `🧠 Ruh hali: <b>${mood}</b><br>🌍 Ülke: <b>${country}</b><br>🎞️ Tür: <b>${genre}</b><br><br><b>🎬 Öneri:</b> "${mood}" ruh haline uygun harika bir ${country} ${genre} filmi izlemelisin!`;
     }
-  </script>
-</body>
+  </script></body>
 </html>
